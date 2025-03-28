@@ -6,3 +6,9 @@ var anoAtual = 2025;
 
 var idade = anoAtual - anoNas;
 
+if(idade >= 16){
+    alert("Voce pode esse ano votar")
+}else(
+    alert("Voce não pode votar esse ano")
+)
+
