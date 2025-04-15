@@ -1,0 +1,128 @@
+<html>
+
+<head>
+
+	<script>
+		var saldo = 100.5; //Float
+		function inicio() {
+
+			//Ao acessar o sistema, pergunte o nome do usuário e diga "Olá {Nome} é um prazer ter você por aqui!
+
+
+
+			var nomeUsuario = prompt("Digite seu nome");
+
+			alert("Ola " + nomeUsuario + " é um prazer ter você por aqui")
+
+			var escolha = parseInt(prompt('Selecione uma opção 1.) Saldo 2.) Depósito 3.) Saque 4.) Sair'));
+
+			/* if (escolha === 1) {
+				ver_saldo();
+			} else if (escolha === 2) {
+				fazer_deposito();
+			} else if (escolha === 3) {
+				fazer_saque();
+			} else if (escolha === 4) {
+				sair();
+			} else {
+				erro();
+			} */
+
+			switch (escolha) {
+				case 1:
+					ver_saldo()
+					break;
+
+				case 2:
+					fazer_deposito()
+					break;
+
+				case 3:
+					fazer_saque()
+					break;
+				case 4:
+					sair()
+					break;
+
+				//default
+				//erro()
+
+
+
+			}
+
+
+
+		}
+
+		function ver_saldo() {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+
+		function fazer_deposito() {
+			var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			// Not a Number
+			if (isNaN(deposito) || deposito === '') {
+				alert('Por favor, informe um número:');
+				fazer_deposito();
+			} else {
+				saldo += deposito;
+				ver_saldo();
+			}
+		}
+
+		function fazer_saque() {
+
+			//Sempre que o usuário for sacar dinheiro, o valor restante não pode ser negativo, ou seja, caso o usuário tente sacar mais do que tem em saldo, a ação não deve ocorrer. Exiba uma mensagem de "Operação não autorizada".
+			/*var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+
+				ver_saldo();
+			}*/
+
+			var saque = parseFloat(prompt('Qual o valor para saque?'));
+			if (isNaN(saque) || saque === '') {
+				alert('Por favor, informe um número:');
+				fazer_saque();
+			} else {
+				saldo -= saque;
+
+				ver_saldo();
+			}
+
+			if (saque < saldo) {
+				fazer_saque()
+
+			} else {
+				alert("Operação não autorizada, digite um valor valido")
+				ver_saldo()
+			}
+
+			function erro() {
+				alert('Por favor, informe um número entre 1 e 4');
+				inicio();
+			}
+
+			function sair() {
+				var confirma = confirm('Você deseja sair?');
+				if (confirma) {
+					window.close();
+				} else {
+					inicio();
+				}
+			}
+
+			inicio();
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>
