@@ -2,81 +2,126 @@
 
 <head>
 
-	<script>
+    <script>
+
+        var nomeHotel = "Morada das Estrelas "
+        var nomeUsuario;
+        var nomeHospede;
 
 
-		function login() {
-			var nomeUsuario = prompt("Digite seu nome")
+        function login() {
+            nomeUsuario = prompt("Digite seu nome")
+            alert("Bem vindo ao Hotel " + nomeHotel + nomeUsuario + ". É um imenso prazer ter você por aqui!")
 
-			var senha = parseInt(prompt("Digite a senha"))
+            var senha = parseInt(prompt("Digite a senha(2678)"))
 
-			if (senha == 2678) {
-				alert("Senha correta")
+            if (senha == 2678) {
+                alert("Senha correta")
 
-				//chamar menu?
-			} else {
-				alert("A senha informada não esta correta")
-				login()
-			}
+                //chamar menu?
+            } else {
+                alert("A senha informada não esta correta")
+                login()
+            }
 
-		}
-
-
-		function inicio() {
-
-			alert("Bem vindo ao Hotel - Morada das Estrelas")
-
-			login()
-
-			var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
-
-			if (escolha === 1) {
-				reserva_quartos();
-			} else if (escolha === 2) {
-				cadastro_hospedes();
-			} else if (escolha === 3) {
-				abastecer_carros();
-			} else if (escolha === 4) {
-				sair();
-			} else {
-				erro();
-			}
-
-		}
-
-		function reserva_quartos() {
-			alert('HOTEL {NOME DO HOTEL} - RESERVA DE QUARTOS');
-			inicio();
-		}
-
-		function cadastro_hospedes() {
-			alert('HOTEL {NOME DO HOTEL} - CADASTRO DE HÓSPEDES');
-			inicio();
-		}
-
-		function abastecer_carros() {
-			alert('HOTEL {NOME DO HOTEL} - ABASTECER');
-			inicio();
-		}
-
-		function erro() {
-			alert('Por favor, informe um número entre 1 e 4');
-			inicio();
-		}
-
-		function sair() {
-			var confirma = confirm('Você deseja sair?');
-			if (confirma) {
-				window.close();
-			} else {
-				inicio();
-			}
-		}
+        }
 
 
+        function inicio() {
 
-		inicio();
-	</script>
+            alert("Bem vindo ao Hotel " + nomeHotel)
+
+            login()
+
+            var escolha = parseInt(prompt('Selecione uma opção 1.) Reserva de Quartos 2.) Cadastro de Hóspedes 3.) Abastecimento de Carros 4.) Sair'));
+
+            switch (escolha) {
+                case 1:
+                    reserva_quartos()
+                    break;
+                case 2:
+                    cadastro_hospedes()
+                    break;
+                case 3:
+                    abastecer_carros()
+                    break;
+                case 4:
+                    sair()
+                    break;
+                default:
+                    erro();
+
+            }
+
+            /*if (escolha === 1) {
+                reserva_quartos();
+            } else if (escolha === 2) {
+                cadastro_hospedes();
+            } else if (escolha === 3) {
+                abastecer_carros();
+            } else if (escolha === 4) {
+                sair();
+            } else {
+                erro();
+            }*/
+
+        }
+
+        function reserva_quartos() {
+            alert(nomeHotel + '- RESERVA DE QUARTOS');
+
+            var diariaHotel = parseFloat(prompt("Qual o valor padrão da diária?"))
+            var quantDias = parseInt(prompt("Quantos dias você vai se ospedar?"))
+
+            if (isNaN(diariaHotel) || diariaHotel === '' || diariaHotel <= 0) {
+                alert('Valor Invalido');
+                reserva_quartos()
+            } else{
+                nomeHospede = prompt("Qual o nome do hóspede")
+                
+            }
+
+            if(isNaN(quantDias) || quantDias === "" || quantDias <= 0 || quantDias > 30){
+                alert("valor invalido");
+                reserva_quartos()
+            } else{
+                
+            }
+
+
+            inicio();
+        }
+
+        function cadastro_hospedes() {
+            alert( nomeHotel + ' - CADASTRO DE HÓSPEDES');
+            inicio();
+        }
+
+        function abastecer_carros() {
+            alert(nomeHotel+ ' - ABASTECER');
+            inicio();
+        }
+
+        function erro() {
+            alert('Por favor, informe um número entre 1 e 4');
+            inicio();
+        }
+
+        function sair() {
+            var confirma = confirm('Você deseja sair?');
+            if (confirma) {
+                alert("Muito obrigado e até logo, "+ nomeUsuario)
+                window.close();
+
+            } else {
+                inicio();
+            }
+        }
+
+
+
+        inicio();
+    </script>
 </head>
 
 <body>
