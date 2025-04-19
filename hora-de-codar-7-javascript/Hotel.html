@@ -7,6 +7,30 @@
         var nomeHotel = "Morada das Estrelas "
         var nomeUsuario;
         var nomeHospede;
+        var calculoHospedagem;
+
+        const listaQuartos = [
+            { nome: "quarto1", status: "disponivel" },
+            { nome: "quarto2", status: "disponivel" },
+            { nome: "quarto3", status: "disponivel" },
+            { nome: "quarto4", status: "disponivel" },
+            { nome: "quarto5", status: "disponivel" },
+            { nome: "quarto6", status: "disponivel" },
+            { nome: "quarto7", status: "disponivel" },
+            { nome: "quarto8", status: "disponivel" },
+            { nome: "quarto9", status: "disponivel" },
+            { nome: "quarto10", status: "disponivel" },
+            { nome: "quarto11", status: "disponivel" },
+            { nome: "quarto12", status: "disponivel" },
+            { nome: "quarto13", status: "disponivel" },
+            { nome: "quarto14", status: "disponivel" },
+            { nome: "quarto15", status: "disponivel" },
+            { nome: "quarto16", status: "disponivel" },
+            { nome: "quarto17", status: "disponivel" },
+            { nome: "quarto18", status: "disponivel" },
+            { nome: "quarto19", status: "disponivel" },
+            { nome: "quarto20", status: "disponivel" }
+        ];
 
 
         function login() {
@@ -70,35 +94,69 @@
         function reserva_quartos() {
             alert(nomeHotel + '- RESERVA DE QUARTOS');
 
-            var diariaHotel = parseFloat(prompt("Qual o valor padrão da diária?"))
-            var quantDias = parseInt(prompt("Quantos dias você vai se ospedar?"))
+            diariaHotel = parseFloat(prompt("Qual o valor padrão da diária?"));
+            quantDias = parseInt(prompt("Quantos dias você vai se hospedar?"));
+        
 
-            if (isNaN(diariaHotel) || diariaHotel === '' || diariaHotel <= 0) {
-                alert('Valor Invalido');
-                reserva_quartos()
-            } else{
-                nomeHospede = prompt("Qual o nome do hóspede")
-                
+            if (
+                isNaN(diariaHotel) || diariaHotel <= 0 || isNaN(quantDias) || quantDias <= 0 || quantDias > 30) {
+                alert("Valor inválido");
+                reserva_quartos();
+            } else {
+                var nomeHospede = prompt("Qual o nome do hóspede?");
+
             }
 
-            if(isNaN(quantDias) || quantDias === "" || quantDias <= 0 || quantDias > 30){
-                alert("valor invalido");
-                reserva_quartos()
-            } else{
-                
+            calculoHospedagem = diariaHotel * quantDias;
+
+
+            var escolhaQuarto = parseInt(prompt("Qual o quarto para reserva? (1 - 20)?"));
+
+            if (isNaN(escolhaQuarto) || escolhaQuarto < 1 || escolhaQuarto > 20) {
+                alert("Número do quarto inválido.");
+                reserva_quartos();
+            }else{
+                alert("Quarto livre")
             }
 
+            let quartoSelecionado = listaQuartos[escolhaQuarto - 1];
+
+            if (quartoSelecionado.status === "disponivel") {
+                quartoSelecionado.status = "ocupado";
+                alert( nomeUsuario + " você confirma a hospedagem para " + nomeHospede + " por " + quantDias + " dias," + " para o quarto " + quartoSelecionado.nome + " por " + calculoHospedagem + " Reais");
+            } else {
+                alert("Esse quarto já está ocupado. Escolha outro.");
+                reserva_quartos();
+            }
+
+            var confirma = prompt("Voce confirma a reserva?")
+
+            if (confirma === "s") {
+                alert("Reserva confirmada para " + nomeHospede + " no " + quartoSelecionado.nome + " por " + quantDias + " dias.");
+            } else {
+                quartoSelecionado.status === "ocupado";
+                quartoSelecionado.status = "disponivel"
+                reserva_quartos();
+            }
+
+
+            /*if (escolhaQuarto) {
+                alert("Quarto Livre.")
+            } else {
+                alert("Quarto está ocupado. Escolha outro.")
+    
+            }*/
 
             inicio();
         }
 
         function cadastro_hospedes() {
-            alert( nomeHotel + ' - CADASTRO DE HÓSPEDES');
+            alert(nomeHotel + ' - CADASTRO DE HÓSPEDES');
             inicio();
         }
 
         function abastecer_carros() {
-            alert(nomeHotel+ ' - ABASTECER');
+            alert(nomeHotel + ' - ABASTECER');
             inicio();
         }
 
@@ -110,7 +168,7 @@
         function sair() {
             var confirma = confirm('Você deseja sair?');
             if (confirma) {
-                alert("Muito obrigado e até logo, "+ nomeUsuario)
+                alert("Muito obrigado e até logo, " + nomeUsuario)
                 window.close();
 
             } else {
